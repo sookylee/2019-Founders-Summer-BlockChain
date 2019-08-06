@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <!-- Site Title-->
+    <title>Login Page</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald:200,400%7CLato:300,400,300italic,700%7CMontserrat:900">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mdi.css">
+    <link rel="stylesheet" href="css/fl-bigmug-line.css">
+      <!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="js/html5shiv.min.js"></script>
+      <![endif]--> 
+  </head>
+  <body>
+  
+    <!-- Page-->
+    <div class="page">
+      <section class="section fullwidth-page bg-image bg-image-4">
+        <div class="fullwidth-page-inner">
+          <div class="section-md text-center">
+            <div class="shell">
+              <h3> White Ticket</h3>
+               <h3>Login</h3>
+              <div class="range range-xs-center">
+                <div class="cell-sm-8 cell-md-6 cell-lg-4">
+                  <!-- RD Mailform-->
+                  <form class="rd-mailform">
+                    <div class="form-wrap form-wrap-validation">
+                      <input class="form-input" id="forms-login-name" placeholdeer="아이디를 입력해주세요" type="text" name="name" data-constraints="@Required">
+                    </div>
+                    <div class="form-wrap form-wrap-validation">
+                      <input class="form-input" id="forms-login-password" placeholdeer="비밀번호를 입력해주세요" type="password" name="password" data-constraints="@Required">
+                    </div>
+                  </form>
+                
+                   <button id='login' class="button button-block button-secondary button-nina">로그인</button>
+                      <a class="button button-block button-secondary button-nina" href="signup">회원가입</a>
+                </div>
+              </div>
+              <p class="offset-custom-1 text-gray-light">or enter with</p>
+              <div class="group-xs group-middle"><a class="icon icon-md-smaller icon-circle icon-filled mdi mdi-facebook" href="#"></a><a class="icon icon-md-smaller icon-circle icon-filled mdi mdi-twitter" href="#"></a><a class="icon icon-md-smaller icon-circle icon-filled mdi mdi-google" href="#"></a></div>
+            </div>
+          </div>
+          <!-- Page Footer-->
+          <div class="section-xs page-footer text-center">
+            <div class="shell">
+              <p class="right">&#169; <span class="copyright-year"></span> All Rights Reserved
+                &nbsp;<a href="#">Terms of Use</a>&nbsp;<span>and</span>&nbsp;<a>Privacy Policy</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <script src="js/core.min.js"></script>
+    <!-- Javascript-->
+     
+   
+    <script src="js/script.js"></script>
+    
+    <script type="text/javascript">
+      $(function(){
+        $('#login').click(function(){
+          var id = $('#forms-login-name').val();
+          var password = $('#forms-login-password').val();
+          if(id==''){
+            alert("아이디를 입력해 주세요");
+          }else if(password==""){
+            alert("패스워드를 입력해 주세요");
+          }else{
+            $.ajax({
+
+                 url: "/", // 클라이언트가 요청을 보낼 서버의 URL 주소
+                data: { "id" : id , "password" : password },                // HTTP 요청과 함께 서버로 보낼 데이터
+                type: "POST",                             // HTTP 요청 방식(GET, POST)
+                dataType: "json"                         // 서버에서 보내줄 데이터의 타입
+            })
+
+.done(function(json) {
+
+   if(json==1){
+      location.href = "ticketproduct";
+   }else{
+    alert("로그인에 실패하였습니다.");
+   }
+
+})
+
+// HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨.
+
+.fail(function(xhr, status, errorThrown) {
+
+    alert("비밀번호를 확인하세요");
+})
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

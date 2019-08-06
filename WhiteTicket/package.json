@@ -1,0 +1,29 @@
+{
+  "name": "pet-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.0",
+    "express-session": "^1.16.2",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "path": "^0.12.7",
+    "truffle-hdwallet-provider": "^1.0.0-web3one.5"
+  }
+}

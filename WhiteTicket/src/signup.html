@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <!-- Site Title-->
+    <title>Blocks Signup Forms</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald:200,400%7CLato:300,400,300italic,700%7CMontserrat:900">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mdi.css">
+    <link rel="stylesheet" href="css/fl-bigmug-line.css">
+      <!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="js/html5shiv.min.js"></script>
+      <![endif]--> 
+  </head>
+  <body>
+   
+    <!-- Page-->
+    <div class="page">
+      
+      
+
+      <!-- Large image-->
+      <section class="section-lg bg-white">
+       
+        <!-- Style switcher-->
+        <div class="style-switcher" data-container="">
+          <div class="style-switcher-container">
+           
+            <section class="section section-lg bg-image section-2-columns">
+              <div class="bg-image-poster"><img src="images/bg-03.jpg" alt=""></div>
+              <div class="shell shell-bigger">
+                <div class="range range-ten range-50 range-xs-right">
+                  <div class="cell-xs-10 cell-sm-9 cell-md-4 cell-xl-3">
+                    <div class="box-width-small">
+                      <h3>Let’s see <br> together</h3>
+                      <hr class="divider divider-left divider-default">
+                      <p class="big">White Ticket can give you lots of advantages, from which you will surely benefit.</p>
+                      <!-- RD Mailform-->
+                      <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post">
+                        <div class="form-wrap form-wrap-validation">
+                          <input class="form-input" id="form-4-email" type="email" name="email" placeholder="email" data-constraints="@Email @Required"/>
+                         
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <input class="form-input" id="form-4-password" type="password" name="password" placeholder="password"  data-constraints="@Required"/>
+                          
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <input class="form-input" id="form-4-password-confirm" type="password" name="password-confirm" placeholder="password confirm" data-constraints="@Required"/>
+                        
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <input class="form-input" id="form-4-address" type="password" placeholder="wallet address"  name="wallet_address" data-constraints="@Required"/>
+                         
+                        </div>
+                        <div class="form-wrap">
+                          <label class="checkbox-inline">
+                            <input type="checkbox" name="check-1" checked="">I agree to the<a href="privacy-policy.html">Terms of Use</a>
+                          </label>
+                        </div>
+                        
+                      </form>
+                      <div>
+                          <button id ='create' class="button button-block button-secondary button-nina">Create an account</button>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page Footer-->
+     
+    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Javascript-->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/core.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        $('#create').click(function(){
+          var id = $('#form-4-email').val();
+          var password = $('#form-4-password').val();
+          var address = $('#form-4-address').val();
+          if(id==''){
+            alert("아이디를 입력해 주세요");
+          }else if(password==""){
+            alert("패스워드를 입력해 주세요");
+          }else{
+            $.ajax({
+                url: "signup", // 클라이언트가 요청을 보낼 서버의 URL 주소
+                data: { "id" : id , "password" : password , "address" : address},                // HTTP 요청과 함께 서버로 보낼 데이터
+                type: "POST",                             // HTTP 요청 방식(GET, POST)
+                dataType: "json"                         // 서버에서 보내줄 데이터의 타입
+            })
+ 
+      .done(function(json) {
+
+if(json==1){
+   alert("회원 가입이 완료되었습니다. 로그인 후 서비스를 이용하실 수 있습니다.");
+   location.href = "/";
+}else{
+ alert("회원 가입이 실패하였습니다.");
+}
+
+})
+
+// HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨.
+
+.fail(function(xhr, status, errorThrown) {
+
+ alert("회원가입에 실패하셨습니다.");
+})
+       }
+     });
+   });
+    </script>
+  </body>
+</html>
